@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Deza Store - Top Up Robux</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+
+body{
+margin:0;
+background:#f2f2f2;
+color:#222;
+}
+
+header{
+background:#fff;
+padding:15px;
+text-align:center;
+font-weight:bold;
+font-size:20px;
+border-bottom:1px solid #ddd;
+}
+
+.container{
+max-width:480px;
+margin:auto;
+padding:10px;
+}
+
+.card{
+background:#fff;
+border-radius:8px;
+padding:15px;
+margin-bottom:15px;
+box-shadow:0 1px 6px rgba(0,0,0,.08);
+animation:fade .4s ease;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+input{
+width:100%;
+padding:11px;
+margin-top:6px;
+border-radius:5px;
+border:1px solid #ccc;
+font-size:14px;
+}
+
+input.error{
+border:2px solid red;
+animation:shake .3s;
+}
+
+@keyframes shake{
+0%{transform:translateX(0)}
+25%{transform:translateX(-5px)}
+50%{transform:translateX(5px)}
+75%{transform:translateX(-5px)}
+100%{transform:translateX(0)}
+}
+
+.btn{
+margin-top:12px;
+padding:12px;
+background:#e6e6e6;
+border-radius:6px;
+text-align:center;
+font-weight:bold;
+cursor:pointer;
+transition:.2s;
+}
+
+.btn:hover{
+background:#d4d4d4;
+transform:scale(1.03);
+}
+
+.small{
+font-size:13px;
+color:#666;
+margin-top:6px;
+}
+
+.error-text{
+color:red;
+font-size:13px;
+margin-top:4px;
+}
+
+footer{
+text-align:center;
+padding:15px;
+font-size:12px;
+color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<header>DEZA STORE — TOP UP ROBUX</header>
+
+<div class="container">
+
+<!-- ORDER -->
+<div class="card">
+<h3>🛒 Order Robux</h3>
+
+<label>Username Roblox</label>
+<input id="user" placeholder="Contoh: DezaGaming">
+<div id="errUser" class="error-text"></div>
+
+<label>Jumlah Robux</label>
+<input id="jumlah" type="number" placeholder="Contoh: 200">
+<div id="errJumlah" class="error-text"></div>
+
+<div class="btn" onclick="order()">Order Sekarang</div>
+<p class="small">⚠ Pastikan sudah membuat Gamepass</p>
+</div>
+
+<!-- TUTORIAL -->
+<div class="card">
+<h3>📘 Tutorial Gamepass</h3>
+<ol>
+<li>Login ke Roblox</li>
+<li>Masuk Create → Experiences</li>
+<li>Pilih Game → Passes</li>
+<li>Create Pass</li>
+<li>Isi harga sesuai order</li>
+<li>Kirim link ke admin</li>
+</ol>
+</div>
+
+<!-- CEK PESANAN -->
+<div class="card">
+<h3>🔍 Cek Pesanan</h3>
+<input id="cek" placeholder="Username Roblox">
+<div class="btn" onclick="cek()">Cek Status</div>
+<p id="hasil"></p>
+</div>
+
+<!-- SALURAN -->
+<div class="card">
+<h3>📢 Saluran Resmi</h3>
+<div class="btn" onclick="window.open('https://whatsapp.com/channel/0029Vb7RHYLChq6OlHXMv02m')">
+Gabung Saluran WhatsApp
+</div>
+<p class="small">Info promo & update stok</p>
+</div>
+
+</div>
+
+<footer>
+© 2026 Deza Store • Unofficial Roblox Top Up
+</footer>
+
+<script>
+function order(){
+let u=document.getElementById("user");
+let j=document.getElementById("jumlah");
+let eu=document.getElementById("errUser");
+let ej=document.getElementById("errJumlah");
+
+eu.innerHTML="";
+ej.innerHTML="";
+u.classList.remove("error");
+j.classList.remove("error");
+
+let ok=true;
+
+if(u.value===""){
+u.classList.add("error");
+eu.innerHTML="Username wajib diisi!";
+ok=false;
+}
+
+if(j.value===""){
+j.classList.add("error");
+ej.innerHTML="Jumlah robux wajib diisi!";
+ok=false;
+}
+
+if(!ok)return;
+
+let pesan=`Halo Admin, saya mau order Robux\n\nUsername: ${u.value}\nJumlah: ${j.value} Robux`;
+window.open("https://wa.me/6287897493566?text="+encodeURIComponent(pesan));
+}
+
+function cek(){
+let c=document.getElementById("cek").value;
+if(c===""){
+alert("Masukkan username!");
+}else{
+document.getElementById("hasil").innerHTML=
+"✅ Pesanan <b>"+c+"</b> sedang diproses.";
+}
+}
+</script>
+
+</body>
+</html>
